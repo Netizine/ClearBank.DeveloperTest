@@ -129,16 +129,13 @@ public class PaymentServiceTests
         switch (paymentScheme)
         {
             case PaymentScheme.Bacs:
+            case PaymentScheme.FasterPayments:
                 Assert.Equal(MakePaymentResult.Succeeded, paymentResult);
                 Assert.Equal(100 - request.Amount, account.Balance);
                 break;
             case PaymentScheme.Chaps:
                 Assert.Equal(MakePaymentResult.Failed, paymentResult);
                 Assert.Equal(100, account.Balance);
-                break;
-            case PaymentScheme.FasterPayments:
-                Assert.Equal(MakePaymentResult.Succeeded, paymentResult);
-                Assert.Equal(100 - request.Amount, account.Balance);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(paymentScheme), paymentScheme, null);
