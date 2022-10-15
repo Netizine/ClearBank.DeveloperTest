@@ -21,10 +21,12 @@ internal class DataStoreProvider
 
     public IDataStore<Account> GetAccountDataStore()
     {
-        return _dataStoreDataStoreType switch
+        switch (_dataStoreDataStoreType)
         {
-            DataStoreType.Backup => new BackupAccountDataStore(),
-            _ => new AccountDataStore(),
-        };
+            case DataStoreType.Backup:
+                return new BackupAccountDataStore();
+            default:
+                return new AccountDataStore();
+        }
     }
 }

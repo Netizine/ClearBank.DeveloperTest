@@ -48,7 +48,7 @@ public class PaymentServiceTests
     public void Test_MakePayment_To_Accounts(AllowedPaymentSchemes allowedPaymentSchemes, PaymentScheme paymentScheme)
     {
         // Arrange
-        var account = new Account()
+        var account = new Account
         {
             AllowedPaymentSchemes = allowedPaymentSchemes,
             Balance = 100,
@@ -57,7 +57,7 @@ public class PaymentServiceTests
         _mockDataStore.Setup(s => s.TryGet(TestAccountId, out account)).Returns(true);
 
         //Act
-        var request = new MakePaymentRequest()
+        var request = new MakePaymentRequest
         {
             DebtorAccountNumber = TestAccountId,
             Amount = 10,
@@ -79,7 +79,7 @@ public class PaymentServiceTests
     public void Test_MakePayment_To_Accounts_Fail_If_Not_Allowed(AllowedPaymentSchemes allowedPaymentSchemes, PaymentScheme paymentScheme)
     {
         // Arrange
-        var account = new Account()
+        var account = new Account
         {
             AllowedPaymentSchemes = allowedPaymentSchemes,
             Balance = 100,
@@ -88,7 +88,7 @@ public class PaymentServiceTests
         _mockDataStore.Setup(s => s.TryGet(TestAccountId, out account)).Returns(true);
 
         //Act
-        var request = new MakePaymentRequest()
+        var request = new MakePaymentRequest
         {
             DebtorAccountNumber = TestAccountId,
             Amount = 10,
@@ -108,7 +108,7 @@ public class PaymentServiceTests
     public void Test_MakePayment_To_Accounts_Fail_If_Disabled(AllowedPaymentSchemes allowedPaymentSchemes, PaymentScheme paymentScheme)
     {
         // Arrange
-        var account = new Account()
+        var account = new Account
         {
             AllowedPaymentSchemes = allowedPaymentSchemes,
             Balance = 100,
@@ -117,7 +117,7 @@ public class PaymentServiceTests
         _mockDataStore.Setup(s => s.TryGet(TestAccountId, out account)).Returns(true);
 
         //Act
-        var request = new MakePaymentRequest()
+        var request = new MakePaymentRequest
         {
             DebtorAccountNumber = TestAccountId,
             Amount = 10,
