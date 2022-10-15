@@ -18,8 +18,8 @@ To simplify the coding process, I would typically choose to implement a 3-layer 
 
 ### Application Layers
 >
->- Application: Process business logic.
->- Entity: POCO classes, construction, and model validation.
->- Infrastructure: Communicate with the database (Data Access Layer).
+>  - Application: Process business logic.
+>  - Entity: POCO classes, construction, and model validation.
+>  - Infrastructure: Communicate with the database (Data Access Layer).
 
 **Please note, i havent followed this as there is no way i would complete this in a hour, as requested**
