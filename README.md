@@ -16,10 +16,10 @@ As such, reducing the number of times we modify a class is essential.
 As a result, classes should actually have been split so that they smaller, cleaner, and thus easier to maintain.
 To simplify the coding process, I would typically choose to implement a 3-layer architecture. To truly be defined as SOLID, the application would need three layers as defined below: 
 
-### Application layers:
+### Application Layers
 >
-> - Application: Process business logic.
-> - Entity: POCO classes, construction, and model validation.
-> - Infrastructure: Communicate with the database (Data Access Layer).
+>- Application: Process business logic.
+>- Entity: POCO classes, construction, and model validation.
+>- Infrastructure: Communicate with the database (Data Access Layer).
 
 **Please note, i havent followed this as there is no way i would complete this in a hour, as requested**
