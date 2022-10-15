@@ -15,14 +15,14 @@ namespace ClearBank.DeveloperTest.Tests;
 
 public class PaymentServiceTests
 {
-    Mock<IDataStore<Account>> _mockDataStore;
-    private PaymentService _paymentService;
-    private string _testAccountId = "1234-5678-9123";
+    private readonly Mock<IDataStore<Account>> _mockDataStore;
+    private readonly PaymentService _paymentService;
+    private const string TestAccountId = "1234-5678-9123";
 
     public PaymentServiceTests()
     {
-        _mockDataStore = new Mock<IDataStore<Account>>();
-        _paymentService = new PaymentService(_mockDataStore.Object);
+        _mockDataStore = new();
+        _paymentService = new(_mockDataStore.Object);
     }
 
 
@@ -33,7 +33,7 @@ public class PaymentServiceTests
         var account = new Account();
 
         //Act
-        var paymentResult = _paymentService.MakePayment(new MakePaymentRequest() { });
+        var paymentResult = _paymentService.MakePayment(new() { });
 
         // Assert
         Assert.Equal(MakePaymentResult.Failed, paymentResult);
@@ -54,12 +54,12 @@ public class PaymentServiceTests
             Balance = 100,
             Status = AccountStatus.Live
         };
-        _mockDataStore.Setup(s => s.TryGet(_testAccountId, out account)).Returns(true);
+        _mockDataStore.Setup(s => s.TryGet(TestAccountId, out account)).Returns(true);
 
         //Act
         var request = new MakePaymentRequest()
         {
-            DebtorAccountNumber = _testAccountId,
+            DebtorAccountNumber = TestAccountId,
             Amount = 10,
             PaymentScheme = paymentScheme
         };
@@ -85,12 +85,12 @@ public class PaymentServiceTests
             Balance = 100,
             Status = AccountStatus.Live
         };
-        _mockDataStore.Setup(s => s.TryGet(_testAccountId, out account)).Returns(true);
+        _mockDataStore.Setup(s => s.TryGet(TestAccountId, out account)).Returns(true);
 
         //Act
         var request = new MakePaymentRequest()
         {
-            DebtorAccountNumber = _testAccountId,
+            DebtorAccountNumber = TestAccountId,
             Amount = 10,
             PaymentScheme = paymentScheme
         };
@@ -114,32 +114,34 @@ public class PaymentServiceTests
             Balance = 100,
             Status = AccountStatus.Disabled
         };
-        _mockDataStore.Setup(s => s.TryGet(_testAccountId, out account)).Returns(true);
+        _mockDataStore.Setup(s => s.TryGet(TestAccountId, out account)).Returns(true);
 
         //Act
         var request = new MakePaymentRequest()
         {
-            DebtorAccountNumber = _testAccountId,
+            DebtorAccountNumber = TestAccountId,
             Amount = 10,
             PaymentScheme = paymentScheme
         };
         var paymentResult = _paymentService.MakePayment(request);
 
         // Assert
-        if (paymentScheme == PaymentScheme.Bacs)
+        switch (paymentScheme)
         {
-            Assert.Equal(MakePaymentResult.Succeeded, paymentResult);
-            Assert.Equal(100 - request.Amount, account.Balance);
-        }
-        else if (paymentScheme == PaymentScheme.Chaps)
-        {
-            Assert.Equal(MakePaymentResult.Failed, paymentResult);
-            Assert.Equal(100, account.Balance);
-        }
-        else if (paymentScheme == PaymentScheme.FasterPayments)
-        {
-            Assert.Equal(MakePaymentResult.Succeeded, paymentResult);
-            Assert.Equal(100 - request.Amount, account.Balance);
+            case PaymentScheme.Bacs:
+                Assert.Equal(MakePaymentResult.Succeeded, paymentResult);
+                Assert.Equal(100 - request.Amount, account.Balance);
+                break;
+            case PaymentScheme.Chaps:
+                Assert.Equal(MakePaymentResult.Failed, paymentResult);
+                Assert.Equal(100, account.Balance);
+                break;
+            case PaymentScheme.FasterPayments:
+                Assert.Equal(MakePaymentResult.Succeeded, paymentResult);
+                Assert.Equal(100 - request.Amount, account.Balance);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(paymentScheme), paymentScheme, null);
         }
     }
 }

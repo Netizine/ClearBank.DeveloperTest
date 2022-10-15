@@ -3,12 +3,14 @@ using ClearBank.DeveloperTest.Types;
 
 namespace ClearBank.DeveloperTest.Extensions;
 
-internal static class TypeExtensions
+internal static class AccountExtension
 {
     internal static bool ProcessPayment(this Account account, PaymentScheme scheme, decimal amount)
     {
         if (!account.AllowedPaymentScheme(scheme))
+        {
             return false;
+        }
 
         return scheme switch
         {

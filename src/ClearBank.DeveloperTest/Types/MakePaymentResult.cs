@@ -10,6 +10,6 @@ public class MakePaymentResult
     public bool Success { get; }
 
 
-    public static MakePaymentResult Failed { get; } = new MakePaymentResult(false);
-    public static MakePaymentResult Succeeded { get; } = new MakePaymentResult(true);
+    public static MakePaymentResult Failed { get; } = new(false);
+    public static MakePaymentResult Succeeded { get; } = new(true);
 }
