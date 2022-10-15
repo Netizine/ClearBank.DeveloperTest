@@ -1,5 +1,7 @@
 # ClearBank Developer Test
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d3435a5161b043fbaa191cd668ebdf38)](https://app.codacy.com/gh/Netizine/ClearBank.DeveloperTest?utm_source=github.com&utm_medium=referral&utm_content=Netizine/ClearBank.DeveloperTest&utm_campaign=Badge_Grade_Settings)
+
 ## Getting Started
 The solution depends on the latest LTS version of the .NET 6 SDK (6.0.402) to be installed as defined in the global.json file.
 Ensure you have the latest SDK installed by running 
