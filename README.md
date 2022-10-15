@@ -16,4 +16,3 @@ Putting all the logic in a single class would violate this principle as the issu
 As such, reducing the number of times we modify a class is essential. 
 
 As a result, classes should actually have been split so that they smaller, cleaner, and thus easier to maintain.
-To simplify the coding process, I would typically choose to implement a 3-layer architecture. 
