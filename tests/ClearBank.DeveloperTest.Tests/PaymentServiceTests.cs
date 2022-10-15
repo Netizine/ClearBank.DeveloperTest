@@ -33,7 +33,7 @@ public class PaymentServiceTests
         var account = new Account();
 
         //Act
-        var paymentResult = _paymentService.MakePayment(new() { });
+        var paymentResult = _paymentService.MakePayment(new MakePaymentRequest { });
 
         // Assert
         Assert.Equal(MakePaymentResult.Failed, paymentResult);
