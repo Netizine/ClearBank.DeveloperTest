@@ -1,6 +1,6 @@
 # ClearBank Developer Test
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c65281e729b54b7885417666a13bcf6c)](https://www.codacy.com/gh/Netizine/ClearBank.DeveloperTest/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Netizine/ClearBank.DeveloperTest&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c65281e729b54b7885417666a13bcf6c)](https://www.codacy.com/gh/Netizine/ClearBank.DeveloperTest/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Netizine/ClearBank.DeveloperTest&amp;utm_campaign=Badge_Grade)   [![.NET](https://github.com/Netizine/ClearBank.DeveloperTest/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Netizine/ClearBank.DeveloperTest/actions/workflows/dotnet.yml)
 
 ## Getting Started
 The solution depends on the latest LTS version of the .NET 6 SDK (6.0.402) to be installed as defined in the global.json file.
