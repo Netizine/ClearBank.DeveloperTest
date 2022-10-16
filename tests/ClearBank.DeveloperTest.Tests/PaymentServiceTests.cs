@@ -48,16 +48,11 @@ public class PaymentServiceTests
         var account = CreateAccount(allowedPaymentSchemes, AccountStatus.Live);
         _mockDataStore.Setup(s => s.TryGet(TestAccountId, out account)).Returns(true);
         //Act
-        var request = new MakePaymentRequest
-        {
-            DebtorAccountNumber = TestAccountId,
-            Amount = PaymentAmount,
-            PaymentScheme = paymentScheme
-        };
-        var paymentResult = _paymentService.MakePayment(request);
+        var paymentRequest = CreatePaymentRequest(paymentScheme);
+        var paymentResult = _paymentService.MakePayment(paymentRequest);
         // Assert
         Assert.Equal(MakePaymentResult.Succeeded, paymentResult);
-        Assert.Equal(OpeningBalance - request.Amount, account.Balance);
+        Assert.Equal(OpeningBalance - paymentRequest.Amount, account.Balance);
         _mockDataStore.Verify(d => d.TryGet(It.IsAny<string>(), out account), Times.Once());
         _mockDataStore.Verify(d => d.Update(account), Times.Once());
     }
@@ -72,13 +67,8 @@ public class PaymentServiceTests
         var account = CreateAccount(allowedPaymentSchemes, AccountStatus.Live);
         _mockDataStore.Setup(s => s.TryGet(TestAccountId, out account)).Returns(true);
         //Act
-        var request = new MakePaymentRequest
-        {
-            DebtorAccountNumber = TestAccountId,
-            Amount = PaymentAmount,
-            PaymentScheme = paymentScheme
-        };
-        var paymentResult = _paymentService.MakePayment(request);
+        var paymentRequest = CreatePaymentRequest(paymentScheme);
+        var paymentResult = _paymentService.MakePayment(paymentRequest);
         // Assert
         Assert.Equal(MakePaymentResult.Failed, paymentResult);
         Assert.Equal(OpeningBalance, account.Balance);
@@ -94,20 +84,15 @@ public class PaymentServiceTests
         var account = CreateAccount(allowedPaymentSchemes, AccountStatus.Disabled);
         _mockDataStore.Setup(s => s.TryGet(TestAccountId, out account)).Returns(true);
         //Act
-        var request = new MakePaymentRequest
-        {
-            DebtorAccountNumber = TestAccountId,
-            Amount = PaymentAmount,
-            PaymentScheme = paymentScheme
-        };
-        var paymentResult = _paymentService.MakePayment(request);
+        var paymentRequest = CreatePaymentRequest(paymentScheme);
+        var paymentResult = _paymentService.MakePayment(paymentRequest);
         // Assert
         switch (paymentScheme)
         {
             case PaymentScheme.Bacs:
             case PaymentScheme.FasterPayments:
                 Assert.Equal(MakePaymentResult.Succeeded, paymentResult);
-                Assert.Equal(OpeningBalance - request.Amount, account.Balance);
+                Assert.Equal(OpeningBalance - paymentRequest.Amount, account.Balance);
                 break;
             case PaymentScheme.Chaps:
                 Assert.Equal(MakePaymentResult.Failed, paymentResult);
@@ -129,13 +114,8 @@ public class PaymentServiceTests
         _mockDataStore.Setup(s => s.TryGet(TestAccountId, out account)).Returns(true);
         _mockDataStore.Setup(s => s.Update(account)).Throws(() => new Exception());
         //Act
-        var request = new MakePaymentRequest
-        {
-            DebtorAccountNumber = TestAccountId,
-            Amount = PaymentAmount,
-            PaymentScheme = paymentScheme
-        };
-        var paymentResult = _paymentService.MakePayment(request);
+        var paymentRequest = CreatePaymentRequest(paymentScheme);
+        var paymentResult = _paymentService.MakePayment(paymentRequest);
         // Assert
         Assert.Equal(MakePaymentResult.Failed, paymentResult);
         _mockDataStore.Verify(d => d.TryGet(It.IsAny<string>(), out account), Times.Once());
@@ -151,6 +131,16 @@ public class PaymentServiceTests
             AllowedPaymentSchemes = allowedPaymentSchemes,
             Balance = OpeningBalance,
             Status = accountStatus
+        };
+    }
+
+    private static MakePaymentRequest CreatePaymentRequest(PaymentScheme paymentScheme)
+    {
+        return new MakePaymentRequest
+        {
+            DebtorAccountNumber = TestAccountId,
+            Amount = PaymentAmount,
+            PaymentScheme = paymentScheme
         };
     }
 }
