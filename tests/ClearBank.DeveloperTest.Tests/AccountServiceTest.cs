@@ -3,9 +3,11 @@ using ClearBank.DeveloperTest.Data;
 using ClearBank.DeveloperTest.Types;
 using ClearBank.DeveloperTest.Extensions;
 using ClearBank.DeveloperTest.Types.Enums;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ClearBank.DeveloperTest.Tests;
 
+[ExcludeFromCodeCoverage]
 public class AccountServiceTest
 {
     private const string TestAccountNumber = "1234-5678-9123";

@@ -1,9 +1,11 @@
 ﻿using ClearBank.DeveloperTest.Data;
 using ClearBank.DeveloperTest.Data.Enums;
 using Microsoft.Extensions.Configuration;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ClearBank.DeveloperTest.Tests;
 
+[ExcludeFromCodeCoverage]
 public class DataStoreTests
 {
 
