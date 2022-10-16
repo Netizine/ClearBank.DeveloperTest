@@ -139,7 +139,7 @@ public class PaymentServiceTests
     public void Will_Fail_Making_Payment_When_Exception_Occurs(AllowedPaymentSchemes allowedPaymentSchemes, PaymentScheme paymentScheme)
     {
         // Arrange
-        var account = new Account()
+        var account = new Account
         {
             AccountNumber = TestAccountId,
             AllowedPaymentSchemes = allowedPaymentSchemes,
@@ -149,7 +149,7 @@ public class PaymentServiceTests
         _mockDataStore.Setup(s => s.TryGet(TestAccountId, out account)).Returns(true);
         _mockDataStore.Setup(s => s.Update(account)).Throws(() => new Exception());
         //Act
-        var request = new MakePaymentRequest()
+        var request = new MakePaymentRequest
         {
             DebtorAccountNumber = TestAccountId,
             Amount = PaymentAmount,
