@@ -4,6 +4,8 @@ using Moq;
 using ClearBank.DeveloperTest.Services;
 using ClearBank.DeveloperTest.Types.Enums;
 using System.Diagnostics.CodeAnalysis;
+using ClearBank.DeveloperTest.Extensions;
+using ClearBank.DeveloperTest.Exceptions;
 
 namespace ClearBank.DeveloperTest.Tests;
 
@@ -37,6 +39,18 @@ public class PaymentServiceTests
         _mockDataStore.Verify(d => d.TryGet(It.IsAny<string>(), out account), Times.Once());
         _mockDataStore.Verify(d => d.Update(account), Times.Never());
     }
+
+    [Fact]
+    public void Test_ValidatePayment_Fails_When_PaymentScheme_Is_NotSet()
+    {
+        // Arrange
+        var account = new Account();
+        // Act & Assert
+        Assert.Throws<InvalidPaymentSchemeException>(() => account.ValidatePaymentScheme(PaymentScheme.NotSet));
+    }
+
+
+    //ProcessPayment
 
     [Theory]
     [InlineData(AllowedPaymentSchemes.Bacs, PaymentScheme.Bacs)]

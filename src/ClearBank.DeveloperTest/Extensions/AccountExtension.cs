@@ -1,6 +1,7 @@
 ﻿using ClearBank.DeveloperTest.Types.Enums;
 using ClearBank.DeveloperTest.Types;
 using ClearBank.DeveloperTest.Exceptions;
+using System.ComponentModel;
 
 namespace ClearBank.DeveloperTest.Extensions;
 
@@ -8,8 +9,8 @@ internal static class AccountExtension
 {
     internal static bool ProcessPayment(this Account account, PaymentScheme scheme, decimal amount)
     {
-        ArgumentNullException.ThrowIfNull(scheme);
-        ArgumentNullException.ThrowIfNull(amount);
+        // ArgumentNullException.ThrowIfNull(scheme);
+        // ArgumentNullException.ThrowIfNull(amount);
 
         if (!account.ValidatePaymentScheme(scheme))
         {
@@ -24,7 +25,9 @@ internal static class AccountExtension
 
             PaymentScheme.Chaps => account.ProcessChapsPayment(amount),
 
-            _ => throw new InvalidPaymentException()
+            PaymentScheme.NotSet => throw new InvalidPaymentSchemeException(),
+
+            _ => throw new InvalidEnumArgumentException()
         };
     }
 
@@ -33,7 +36,8 @@ internal static class AccountExtension
         PaymentScheme.Bacs => account.AllowedPaymentSchemes.HasFlag(AllowedPaymentSchemes.Bacs),
         PaymentScheme.Chaps => account.AllowedPaymentSchemes.HasFlag(AllowedPaymentSchemes.Chaps),
         PaymentScheme.FasterPayments => account.AllowedPaymentSchemes.HasFlag(AllowedPaymentSchemes.FasterPayments),
-        _ => throw new InvalidPaymentSchemeException()
+        PaymentScheme.NotSet => throw new InvalidPaymentSchemeException(),
+        _ => throw new InvalidEnumArgumentException()
     };
 
     internal static bool ProcessBacsPayment(this Account account, decimal amount)
