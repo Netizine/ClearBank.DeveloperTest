@@ -29,8 +29,9 @@ public class PaymentServiceTests
     {
         // Arrange
         var account = new Account();
+        var paymentRequest = new MakePaymentRequest();
         //Act
-        var paymentResult = _paymentService.MakePayment(new MakePaymentRequest());
+        var paymentResult = _paymentService.MakePayment(paymentRequest);
         // Assert
         Assert.Equal(MakePaymentResult.Failed, paymentResult);
         _mockDataStore.Verify(d => d.TryGet(It.IsAny<string>(), out account), Times.Once());
@@ -44,12 +45,7 @@ public class PaymentServiceTests
     public void Test_MakePayment_To_Accounts(AllowedPaymentSchemes allowedPaymentSchemes, PaymentScheme paymentScheme)
     {
         // Arrange
-        var account = new Account
-        {
-            AllowedPaymentSchemes = allowedPaymentSchemes,
-            Balance = OpeningBalance,
-            Status = AccountStatus.Live
-        };
+        var account = CreateAccount(allowedPaymentSchemes, AccountStatus.Live);
         _mockDataStore.Setup(s => s.TryGet(TestAccountId, out account)).Returns(true);
         //Act
         var request = new MakePaymentRequest
@@ -73,12 +69,7 @@ public class PaymentServiceTests
     public void Test_MakePayment_To_Accounts_Fail_If_Not_Allowed(AllowedPaymentSchemes allowedPaymentSchemes, PaymentScheme paymentScheme)
     {
         // Arrange
-        var account = new Account
-        {
-            AllowedPaymentSchemes = allowedPaymentSchemes,
-            Balance = OpeningBalance,
-            Status = AccountStatus.Live
-        };
+        var account = CreateAccount(allowedPaymentSchemes, AccountStatus.Live);
         _mockDataStore.Setup(s => s.TryGet(TestAccountId, out account)).Returns(true);
         //Act
         var request = new MakePaymentRequest
@@ -100,12 +91,7 @@ public class PaymentServiceTests
     public void Test_MakePayment_To_Accounts_Fail_If_Disabled(AllowedPaymentSchemes allowedPaymentSchemes, PaymentScheme paymentScheme)
     {
         // Arrange
-        var account = new Account
-        {
-            AllowedPaymentSchemes = allowedPaymentSchemes,
-            Balance = OpeningBalance,
-            Status = AccountStatus.Disabled
-        };
+        var account = CreateAccount(allowedPaymentSchemes, AccountStatus.Disabled);
         _mockDataStore.Setup(s => s.TryGet(TestAccountId, out account)).Returns(true);
         //Act
         var request = new MakePaymentRequest
@@ -139,13 +125,7 @@ public class PaymentServiceTests
     public void Will_Fail_Making_Payment_When_Exception_Occurs(AllowedPaymentSchemes allowedPaymentSchemes, PaymentScheme paymentScheme)
     {
         // Arrange
-        var account = new Account
-        {
-            AccountNumber = TestAccountId,
-            AllowedPaymentSchemes = allowedPaymentSchemes,
-            Balance = OpeningBalance,
-            Status = AccountStatus.Live
-        };
+        var account = CreateAccount(allowedPaymentSchemes, AccountStatus.Live);
         _mockDataStore.Setup(s => s.TryGet(TestAccountId, out account)).Returns(true);
         _mockDataStore.Setup(s => s.Update(account)).Throws(() => new Exception());
         //Act
@@ -161,5 +141,16 @@ public class PaymentServiceTests
         _mockDataStore.Verify(d => d.TryGet(It.IsAny<string>(), out account), Times.Once());
         _mockDataStore.Verify(d => d.Update(account), Times.Once());
 
+    }
+
+    private static Account CreateAccount(AllowedPaymentSchemes allowedPaymentSchemes, AccountStatus accountStatus)
+    {
+        return new Account
+        {
+            AccountNumber = TestAccountId,
+            AllowedPaymentSchemes = allowedPaymentSchemes,
+            Balance = OpeningBalance,
+            Status = accountStatus
+        };
     }
 }
