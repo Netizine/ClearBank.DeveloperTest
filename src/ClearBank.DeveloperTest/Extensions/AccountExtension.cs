@@ -9,8 +9,6 @@ internal static class AccountExtension
 {
     internal static bool ProcessPayment(this Account account, PaymentScheme scheme, decimal amount)
     {
-        // ArgumentNullException.ThrowIfNull(scheme);
-        // ArgumentNullException.ThrowIfNull(amount);
 
         if (!account.ValidatePaymentScheme(scheme))
         {
