@@ -14,6 +14,6 @@ Ensure you have the latest SDK installed by running
 ```bash
 dotnet --list-sdks
 ```
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-orange.svg)](https://sonarcloud.io/summary/new_code?id=Netizine_ClearBank.DeveloperTest)
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=Netizine_ClearBank.DeveloperTest)](https://sonarcloud.io/summary/new_code?id=Netizine_ClearBank.DeveloperTest)
 
 
