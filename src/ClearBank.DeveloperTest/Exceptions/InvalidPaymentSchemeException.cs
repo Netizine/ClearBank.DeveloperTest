@@ -1,8 +1,11 @@
 ﻿// ReSharper disable UnusedMember.Global
+
+using System.Runtime.Serialization;
+
 namespace ClearBank.DeveloperTest.Exceptions;
 
 [Serializable]
-public class InvalidPaymentSchemeException : Exception
+public class InvalidPaymentSchemeException : Exception, ISerializable
 {
     public InvalidPaymentSchemeException()
     {
