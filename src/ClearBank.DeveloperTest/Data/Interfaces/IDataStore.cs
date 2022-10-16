@@ -3,6 +3,5 @@
 public interface IDataStore<T>
 {
     bool TryGet(string id, out T value);
-
     void Update(T item);
 }

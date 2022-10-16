@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ClearBank.DeveloperTest.Data;
+﻿using ClearBank.DeveloperTest.Data;
 using ClearBank.DeveloperTest.Data.Enums;
-using ClearBank.DeveloperTest.Data.Interfaces;
-using ClearBank.DeveloperTest.Services;
 using Microsoft.Extensions.Configuration;
 
 namespace ClearBank.DeveloperTest.Tests;

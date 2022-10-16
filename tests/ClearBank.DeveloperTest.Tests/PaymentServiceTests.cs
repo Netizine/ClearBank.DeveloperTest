@@ -1,11 +1,4 @@
-﻿using ClearBank.DeveloperTest.Data.Enums;
-using ClearBank.DeveloperTest.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ClearBank.DeveloperTest.Data.Interfaces;
+﻿using ClearBank.DeveloperTest.Data.Interfaces;
 using ClearBank.DeveloperTest.Types;
 using Moq;
 using ClearBank.DeveloperTest.Services;
@@ -21,19 +14,20 @@ public class PaymentServiceTests
 
     public PaymentServiceTests()
     {
-        _mockDataStore = new();
-        _paymentService = new(_mockDataStore.Object);
+        _mockDataStore = new Mock<IDataStore<Account>>();
+        _paymentService = new PaymentService(_mockDataStore.Object);
+
     }
 
 
     [Fact]
-    public void Test_MakePayment_Fails_When_Account_Doesnt_Exists()
+    public void Test_MakePayment_Fails_When_Account_Is_Invalid()
     {
         // Arrange
         var account = new Account();
 
         //Act
-        var paymentResult = _paymentService.MakePayment(new MakePaymentRequest { });
+        var paymentResult = _paymentService.MakePayment(new MakePaymentRequest());
 
         // Assert
         Assert.Equal(MakePaymentResult.Failed, paymentResult);

@@ -8,7 +8,7 @@ public class BackupAccountDataStore : IDataStore<Account>
     public bool TryGet(string accountNumber, out Account account)
     {
         // Access backup data base to retrieve account, code removed for brevity and assuming success
-        account = new();
+        account = new Account();
         return true;
     }
 

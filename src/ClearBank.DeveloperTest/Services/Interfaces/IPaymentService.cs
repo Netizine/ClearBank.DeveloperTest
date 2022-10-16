@@ -4,5 +4,5 @@ namespace ClearBank.DeveloperTest.Services.Interfaces;
 
 public interface IPaymentService
 {
-    MakePaymentResult MakePayment(MakePaymentRequest request);
+    MakePaymentResult MakePayment(MakePaymentRequest paymentRequest);
 }

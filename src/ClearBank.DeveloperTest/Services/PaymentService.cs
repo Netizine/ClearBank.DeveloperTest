@@ -7,23 +7,25 @@ namespace ClearBank.DeveloperTest.Services;
 
 public class PaymentService : IPaymentService
 {
+    private IDataStore<Account> DataStore { get; }
+
     public PaymentService(IDataStore<Account> dataStore)
     {
         DataStore = dataStore;
     }
 
-    private IDataStore<Account> DataStore { get; }
-
-    public MakePaymentResult MakePayment(MakePaymentRequest request)
+    public MakePaymentResult MakePayment(MakePaymentRequest paymentRequest)
     {
+        ArgumentNullException.ThrowIfNull(paymentRequest);
+
         try
         {
-            if (!DataStore.TryGet(request.DebtorAccountNumber, out var account))
+            if (!DataStore.TryGet(paymentRequest.DebtorAccountNumber, out var account))
             {
                 return MakePaymentResult.Failed;
             }
 
-            if (!account.ProcessPayment(request.PaymentScheme, request.Amount))
+            if (!account.ProcessPayment(paymentRequest.PaymentScheme, paymentRequest.Amount))
             {
                 return MakePaymentResult.Failed;
             }
