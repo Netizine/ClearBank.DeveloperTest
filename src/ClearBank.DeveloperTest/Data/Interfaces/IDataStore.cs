@@ -2,6 +2,6 @@
 
 public interface IDataStore<T>
 {
-    bool TryGet(string id, out T value);
+    bool TryGet(string accountNumber, out T value);
     void Update(T item);
 }
