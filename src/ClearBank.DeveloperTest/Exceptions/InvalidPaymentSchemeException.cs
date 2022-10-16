@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 namespace ClearBank.DeveloperTest.Exceptions;
 
 [Serializable]
-public class InvalidPaymentSchemeException : Exception, ISerializable
+public class InvalidPaymentSchemeException : Exception
 {
     public InvalidPaymentSchemeException()
     {
@@ -19,5 +19,10 @@ public class InvalidPaymentSchemeException : Exception, ISerializable
     public InvalidPaymentSchemeException(string message, Exception inner)
         : base(message, inner)
     {
+    }
+
+    protected InvalidPaymentSchemeException(SerializationInfo info, StreamingContext context) : base(info, context)
+    {
+
     }
 }
