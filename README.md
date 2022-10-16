@@ -1,11 +1,11 @@
 # ClearBank Developer Test
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c65281e729b54b7885417666a13bcf6c)](https://www.codacy.com/gh/Netizine/ClearBank.DeveloperTest/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Netizine/ClearBank.DeveloperTest&amp;utm_campaign=Badge_Grade)   [![CodeFactor](https://www.codefactor.io/repository/github/netizine/clearbank.developertest/badge)](https://www.codefactor.io/repository/github/netizine/clearbank.developertest)    [![.NET](https://github.com/Netizine/ClearBank.DeveloperTest/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Netizine/ClearBank.DeveloperTest/actions/workflows/dotnet.yml)    [![CodeQL](https://github.com/Netizine/ClearBank.DeveloperTest/actions/workflows/codeql.yml/badge.svg)](https://github.com/Netizine/ClearBank.DeveloperTest/actions/workflows/codeql.yml)    [![Codacy Security Scan](https://github.com/Netizine/ClearBank.DeveloperTest/actions/workflows/codacy.yml/badge.svg)](https://github.com/Netizine/ClearBank.DeveloperTest/actions/workflows/codacy.yml) 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c65281e729b54b7885417666a13bcf6c)](https://www.codacy.com/gh/Netizine/ClearBank.DeveloperTest/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Netizine/ClearBank.DeveloperTest&amp;utm_campaign=Badge_Grade)   [![CodeFactor](https://www.codefactor.io/repository/github/netizine/clearbank.developertest/badge)](https://www.codefactor.io/repository/github/netizine/clearbank.developertest)    [![.NET](https://github.com/Netizine/ClearBank.DeveloperTest/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Netizine/ClearBank.DeveloperTest/actions/workflows/dotnet.yml)    [![CodeQL](https://github.com/Netizine/ClearBank.DeveloperTest/actions/workflows/codeql.yml/badge.svg)](https://github.com/Netizine/ClearBank.DeveloperTest/actions/workflows/codeql.yml)    [![Codacy Security Scan](https://github.com/Netizine/ClearBank.DeveloperTest/actions/workflows/codacy.yml/badge.svg)](https://github.com/Netizine/ClearBank.DeveloperTest/actions/workflows/codacy.yml)    [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=Netizine_ClearBank.DeveloperTest&metric=alert_status)](https://sonarcloud.io/dashboard?id=Netizine_ClearBank.DeveloperTest)    [![SonarCloud Bugs](https://sonarcloud.io/api/project_badges/measure?project=Netizine_ClearBank.DeveloperTest&metric=bugs)](https://sonarcloud.io/component_measures/metric/reliability_rating/list?id=Netizine_ClearBank.DeveloperTest)    [![SonarCloud Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Netizine_ClearBank.DeveloperTest&metric=vulnerabilities)](https://sonarcloud.io/component_measures/metric/security_rating/list?id=Netizine_ClearBank.DeveloperTest)    ![Code Coverage](https://img.shields.io/badge/Code%20Coverage-72%25-yellow?style=flat)
 
- [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=Netizine_ClearBank.DeveloperTest&metric=alert_status)](https://sonarcloud.io/dashboard?id=Netizine_ClearBank.DeveloperTest) 
- [![SonarCloud Coverage](https://sonarcloud.io/api/project_badges/measure?project=Netizine_ClearBank.DeveloperTest&metric=coverage)](https://sonarcloud.io/component_measures/metric/coverage/list?id=Netizine_ClearBank.DeveloperTest)
- [![SonarCloud Bugs](https://sonarcloud.io/api/project_badges/measure?project=Netizine_ClearBank.DeveloperTest&metric=bugs)](https://sonarcloud.io/component_measures/metric/reliability_rating/list?id=Netizine_ClearBank.DeveloperTest)
- [![SonarCloud Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Netizine_ClearBank.DeveloperTest&metric=vulnerabilities)](https://sonarcloud.io/component_measures/metric/security_rating/list?id=Netizine_ClearBank.DeveloperTest)
+Package | Line Rate | Branch Rate | Complexity | Health
+-------- | --------- | ----------- | ---------- | ------
+ClearBank.DeveloperTest | 72% | 90% | 50 | ➖
+**Summary** | **72%** (94 / 130) | **90%** (18 / 20) | **50** | ➖
 
 
 ## Getting Started
@@ -15,10 +15,3 @@ Ensure you have the latest SDK installed by running
 dotnet --list-sdks
 ```
 
-## Disclaimer
-As SOLID is defined as a required design principle, having one class with all the logic made no sense. 
-Given that the S stands for Single responsibility principle, Robert Martin states that "Every software module should have only one reason to change."
-Putting all the logic in a single class would violate this principle as the issue is that your class won't be conceptually cohesive, giving it several reasons to change.
-As such, reducing the number of times we modify a class is essential. 
-
-As a result, classes should actually have been split so that they smaller, cleaner, and thus easier to maintain.
