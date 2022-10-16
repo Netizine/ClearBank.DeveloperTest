@@ -2,6 +2,11 @@
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/c65281e729b54b7885417666a13bcf6c)](https://www.codacy.com/gh/Netizine/ClearBank.DeveloperTest/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Netizine/ClearBank.DeveloperTest&amp;utm_campaign=Badge_Grade)   [![CodeFactor](https://www.codefactor.io/repository/github/netizine/clearbank.developertest/badge)](https://www.codefactor.io/repository/github/netizine/clearbank.developertest)    [![.NET](https://github.com/Netizine/ClearBank.DeveloperTest/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Netizine/ClearBank.DeveloperTest/actions/workflows/dotnet.yml)    [![CodeQL](https://github.com/Netizine/ClearBank.DeveloperTest/actions/workflows/codeql.yml/badge.svg)](https://github.com/Netizine/ClearBank.DeveloperTest/actions/workflows/codeql.yml)    [![Codacy Security Scan](https://github.com/Netizine/ClearBank.DeveloperTest/actions/workflows/codacy.yml/badge.svg)](https://github.com/Netizine/ClearBank.DeveloperTest/actions/workflows/codacy.yml) 
 
+ [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=Netizine_ClearBank.DeveloperTest&metric=alert_status)](https://sonarcloud.io/dashboard?id=Netizine_ClearBank.DeveloperTest) 
+ [![SonarCloud Coverage](https://sonarcloud.io/api/project_badges/measure?project=Netizine_ClearBank.DeveloperTest&metric=coverage)](https://sonarcloud.io/component_measures/metric/coverage/list?id=Netizine_ClearBank.DeveloperTest)
+ [![SonarCloud Bugs](https://sonarcloud.io/api/project_badges/measure?project=Netizine_ClearBank.DeveloperTest&metric=bugs)](https://sonarcloud.io/component_measures/metric/reliability_rating/list?id=Netizine_ClearBank.DeveloperTest)
+ [![SonarCloud Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=Netizine_ClearBank.DeveloperTest&metric=vulnerabilities)](https://sonarcloud.io/component_measures/metric/security_rating/list?id=Netizine_ClearBank.DeveloperTest)
+
 
 ## Getting Started
 The solution depends on the latest LTS version of the .NET 6 SDK (6.0.402) to be installed as defined in the global.json file.
