@@ -13,5 +13,7 @@ The solution depends on the latest LTS version of the .NET 6 SDK (6.0.402) to be
 Ensure you have the latest SDK installed by running 
 ```bash
 dotnet --list-sdks
+
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-orange.svg)](https://sonarcloud.io/summary/new_code?id=Netizine_ClearBank.DeveloperTest)
 ```
 
